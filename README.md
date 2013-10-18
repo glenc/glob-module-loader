@@ -12,12 +12,12 @@ Installation
 
 Then simply require glob-module-loader in your application
 
-    require("amd-loader");
+    require('glob-module-loader');
 
 Usage
 -----
 
-glob-module-loader is intended to find all files matching a glob syntax (i.e. plugins/**/*.js) and load each file as an individual module.  It can load all modules synchronously and hand back an array, or it can load them asynchronously calling a callback method for each module loaded.
+glob-module-loader is intended to find all files matching a glob syntax (i.e. "plugins/**/*.js") and load each file as an individual module.  It can load all modules synchronously and hand back an array, or it can load them asynchronously calling a callback method for each module loaded.
 
 ```
    var loader = require('glob-module-loader');
@@ -41,6 +41,9 @@ Dependencies
 ------------
 glob-module-loader depends on the following packages:
 
-* async
-* glob
+* [async](https://npmjs.org/package/async)
+* [glob](https://npmjs.org/package/glob)
 
+License
+-------
+GPLv2

@@ -1,0 +1,30 @@
+{
+  "name": "glob-module-loader",
+  "version": "0.0.1",
+  "description": "A library to load all files as modules based on glob syntax.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules/mocha/bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/glenc/glob-module-loader"
+  },
+  "keywords": [
+    "module",
+    "glob"
+  ],
+  "author": "Glen Cooper <glencooper@gmail.com>",
+  "license": "GPLv2",
+  "bugs": {
+    "url": "https://github.com/glenc/glob-module-loader/issues"
+  },
+  "dependencies": {
+    "async": "~0.2.9",
+    "glob": "~3.2.6"
+  },
+  "devDependencies": {
+    "chai": "~1.8.1",
+    "mocha": "~1.13.0"
+  }
+}
