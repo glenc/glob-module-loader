@@ -6,6 +6,8 @@ A node.js library to find and load files as modules based on glob file syntax (i
 ## Quick Example
 
 ```js
+var loader = require('glob-module-loader');
+
 loader.load('plugins/**/*.js', function(err, modules) {
   console.log('Loaded %s' modules.length);
 });
@@ -89,7 +91,7 @@ loader.load(['*.js', 'dir/*.js'], function(err, modules){
 ---------------------------------------
 
 <a name="loadAsync" />
-### load(patterns, callback)
+### loadAsync(patterns, module_callback, callback)
 
 Searches the file system for modules to load based on the glob patterns provided.  As each module is loaded, the module_callback function will be called passing the loaded module.  Once all modules have been loaded the callback function is called passing the loaded modules as an array.
 
