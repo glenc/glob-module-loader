@@ -1,3 +1,4 @@
+var path  = require('path');
 var glob  = require('glob');
 var async = require('async');
 
@@ -12,7 +13,7 @@ var loadAsync = module.exports.loadAsync = function(patterns, module_callback, c
 
   var loadModule = function(file, cb) {
     try {
-      var module = require('./' + file);
+      var module = require(path.resolve(process.cwd(), file));
       modules.push(module);
       if (module_callback) {
         module_callback(module);
