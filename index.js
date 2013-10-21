@@ -2,11 +2,13 @@ var path  = require('path');
 var glob  = require('glob');
 var async = require('async');
 
-var load = module.exports.load = function(patterns, callback) {
-  loadAsync(patterns, null, callback);
-};
+var load = module.exports.load = function(patterns, module_callback, callback) {
+  // check if the caller wants to be called for every module, or just the end
+  if (!callback) {
+    callback = module_callback;
+    module_callback = null;
+  };
 
-var loadAsync = module.exports.loadAsync = function(patterns, module_callback, callback) {
   patterns = Array.isArray(patterns) ? patterns : [patterns];
 
   var modules = [];

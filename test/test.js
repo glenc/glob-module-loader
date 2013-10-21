@@ -29,7 +29,7 @@ describe('loader', function() {
       });
     });
 
-    describe('loadAsync', function() {
+    describe('load with module callback', function() {
       var result = {
         cb_modules: []
       };
@@ -37,7 +37,7 @@ describe('loader', function() {
         var mod_cb = function(module) {
           result.cb_modules.push(module);
         };
-        loader.loadAsync('test/samples/**/*.js', mod_cb, function(err, modules) {
+        loader.load('test/samples/**/*.js', mod_cb, function(err, modules) {
           result.err = err;
           result.modules = modules;
           done();
@@ -99,7 +99,7 @@ describe('loader', function() {
       });
     });
 
-    describe('loadAsync', function() {
+    describe('load with module callback', function() {
       var result = {
         cb_modules: []
       };
@@ -107,7 +107,7 @@ describe('loader', function() {
         var mod_cb = function(module) {
           result.cb_modules.push(module);
         };
-        loader.loadAsync(['test/samples/dir1/*.js', 'test/samples/dir2/*.js'], mod_cb, function(err, modules) {
+        loader.load(['test/samples/dir1/*.js', 'test/samples/dir2/*.js'], mod_cb, function(err, modules) {
           result.err = err;
           result.modules = modules;
           done();
