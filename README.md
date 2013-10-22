@@ -8,11 +8,13 @@ A node.js library to find and load files as modules based on glob file syntax (i
 ```js
 var loader = require('glob-module-loader');
 
+// a single path with a single callback once all modules are loaded
 loader.load('plugins/**/*.js', function(err, modules) {
   console.log('Loaded %s' modules.length);
 });
 
-loader.loadAsync(
+// multiple paths and a callback that should be called for each module loaded
+loader.load(
   ['plugins/**/*.js', 'vendor/**/*.js'],
   function(module) { console.log('Loaded a module'); },
   function(err, modules) { console.log('Loading complete'); }
@@ -44,7 +46,7 @@ loader.load('plugins/**/*.js', function(err, modules) {
 });
 
 // load asynchronously
-loader.loadAsync('plugins/**/*.js',
+loader.load('plugins/**/*.js',
   function(module) {
     console.log('Called for each module loaded');
   },
@@ -63,19 +65,15 @@ glob-module-loader depends on the following packages:
 
 ## Documentation
 
-* [load](#load)
-* [loadAsync](#loadAsync)
-
----------------------------------------
-
-<a name="load" />
-### load(patterns, callback)
+### load(patterns, module_callback, callback)
 
 Searches the file system for modules to load based on the glob patterns provided.  Once all modules have been loaded the callback function is called passing the loaded modules as an array.
 
 __Arguments__
 
 * patterns - A string or array of strings containing glob patterns to search.
+* module_callback(module) - An optional callback function which is called for
+  each module immediately after it is loaded.
 * callback(err, modules) - A callback which is called after all modules have been
   loaded, or until an error is encountered.  If an error is encountered the callback
   will be called immediately and no modules will be returned.
@@ -84,30 +82,10 @@ __Example__
 
 ```js
 loader.load(['*.js', 'dir/*.js'], function(err, modules){
-    // all modules loaded are now in the modules array
+  // all modules loaded are now in the modules array
 });
-```
 
----------------------------------------
-
-<a name="loadAsync" />
-### loadAsync(patterns, module_callback, callback)
-
-Searches the file system for modules to load based on the glob patterns provided.  As each module is loaded, the module_callback function will be called passing the loaded module.  Once all modules have been loaded the callback function is called passing the loaded modules as an array.
-
-__Arguments__
-
-* patterns - A string or array of strings containing glob patterns to search.
-* module_callback(module) - A function which is called for each module immediately
-  after it is loaded.
-* callback(err, modules) - A callback which is called after all modules have been
-  loaded, or until an error is encountered.  If an error is encountered the callback
-  will be called immediately and no modules will be returned.
-
-__Example__
-
-```js
-loader.loadAsync(
+loader.load(
   ['*.js', 'dir/*.js'],
   function(module) {
     // called for each module
